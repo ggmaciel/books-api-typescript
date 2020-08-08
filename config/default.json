@@ -1,0 +1,10 @@
+{
+    "App": {
+        "resources": {
+            "GoogleBooks": {
+                "apiUrl": "https://www.googleapis.com/books/v1",
+                "apiToken": "do-not-hard-code"
+            }
+        }
+    }
+}

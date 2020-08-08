@@ -1,5 +1,6 @@
-import { AxiosStatic } from 'axios'
 import { InternalError } from '@src/util/errors/internal-errors'
+import config, { IConfig } from 'config'
+import * as HTTPUtil from '@src/util/request'
 
 export interface GoogleBooksApiResponse {
     readonly kind: string,
@@ -26,20 +27,22 @@ export class GoogleBooksResponseError extends InternalError {
     }
 }
 
+const googleBooksResourceConfig: IConfig = config.get('App.resources.GoogleBooks')
+
 export class GoogleBooks {
-    constructor(protected request: AxiosStatic) { }
+    constructor(protected request = new HTTPUtil.Request()) { }
     public async fetchBooks(title: string): Promise<GoogleBooksApiResponse> {
         try {
-            const response = await this.request.get(`https://www.googleapis.com/books/v1/volumes?q=${title}`,
+            const response = await this.request.get<GoogleBooksApiResponse>(`${googleBooksResourceConfig.get('apiUrl')}/volumes?q=${title}`,
                 {
                     headers: {
-                        Authorization: 'fake-token'
+                        Authorization: googleBooksResourceConfig.get('apiToken')
                     }
                 })
 
             return response.data
         } catch (err) {
-            if (err.response && err.response.status) {
+            if (HTTPUtil.Request.isRequestError(err)) {
                 throw new GoogleBooksResponseError(`Error: ${JSON.stringify(err.response.data)} Code: ${err.response.status}`)
             }
             throw new ClientRequestError(err.message)
