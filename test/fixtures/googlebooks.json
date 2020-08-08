@@ -1,100 +1,103 @@
 {
-    "kind": "books#volume",
-    "id": "BMusAgAAQBAJ",
-    "etag": "KoGfqA+cxKU",
-    "selfLink": "https://www.googleapis.com/books/v1/volumes/BMusAgAAQBAJ",
-    "volumeInfo": {
-        "title": "Human Security, Transnational Crime and Human Trafficking",
-        "subtitle": "Asian and Western Perspectives",
-        "authors": [
-            "Shiro Okubo",
-            "Louise Shelley"
-        ],
-        "publisher": "Routledge",
-        "publishedDate": "2011-03-17",
-        "description": "In recent years, drug use, illegal migration and human trafficking have all become more common in Asia, North America and Asia: the problems of organized crime and human trafficking are no longer confined to operating at the traditional regional level. This book fills a gap in the current literature by examining transnational crime, human trafficking and its implications for human security from both Western and Asian perspectives. The book: Provides an outline of the overall picture of organized crime and human trafficking in the contemporary world, examining the current trends and recent developments contrasts the experience and perception of these problems in Asia with those in the West, by analyzing the distinctive Japanese perspective on globalization, human security and transnational crime examines the policy responses of key states and international institutions in Germany, Canada, the United States, the European Union, Japan, and Korea. This book argues that any effort to combat these crimes requires a response that addresses the welfare of human beings alongside the standard criminal law response. It represents a timely analysis of the increasingly serious problems of transnational crime, human trafficking and security.",
-        "industryIdentifiers": [
-            {
-                "type": "ISBN_13",
-                "identifier": "9781136832932"
+    "items": [
+        {
+            "kind": "books#volume",
+            "id": "U5NhxE67JjMC",
+            "etag": "EmcQs7eyuJU",
+            "selfLink": "https://www.googleapis.com/books/v1/volumes/U5NhxE67JjMC",
+            "volumeInfo": {
+                "title": "Crime and Punishment",
+                "authors": [
+                    "Fyodor Dostoevsky"
+                ],
+                "publisher": "Vintage",
+                "publishedDate": "2012-08-08",
+                "description": "Nominated as one of America’s best-loved novels by PBS’s The Great American Read With the same suppleness, energy, and range of voices that won their translation of The Brothers Karamazov the PEN/Book-of-the-Month Club Prize, Pevear and Volokhonsky offer a brilliant translation of Dostoevsky's classic novel that presents a clear insight into this astounding psychological thriller. \"The best (translation) currently available\"--Washington Post Book World.",
+                "industryIdentifiers": [
+                    {
+                        "type": "ISBN_13",
+                        "identifier": "9780307829603"
+                    },
+                    {
+                        "type": "ISBN_10",
+                        "identifier": "030782960X"
+                    }
+                ],
+                "readingModes": {
+                    "text": true,
+                    "image": false
+                },
+                "pageCount": 592,
+                "printType": "BOOK",
+                "categories": [
+                    "Fiction"
+                ],
+                "averageRating": 4,
+                "ratingsCount": 30,
+                "maturityRating": "NOT_MATURE",
+                "allowAnonLogging": true,
+                "contentVersion": "1.10.8.0.preview.2",
+                "panelizationSummary": {
+                    "containsEpubBubbles": false,
+                    "containsImageBubbles": false
+                },
+                "imageLinks": {
+                    "smallThumbnail": "http://books.google.com/books/content?id=U5NhxE67JjMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                    "thumbnail": "http://books.google.com/books/content?id=U5NhxE67JjMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+                },
+                "language": "en",
+                "previewLink": "http://books.google.com.br/books?id=U5NhxE67JjMC&printsec=frontcover&dq=crime&hl=&cd=1&source=gbs_api",
+                "infoLink": "https://play.google.com/store/books/details?id=U5NhxE67JjMC&source=gbs_api",
+                "canonicalVolumeLink": "https://play.google.com/store/books/details?id=U5NhxE67JjMC"
             },
-            {
-                "type": "ISBN_10",
-                "identifier": "1136832939"
-            }
-        ],
-        "readingModes": {
-            "text": true,
-            "image": true
-        },
-        "pageCount": 272,
-        "printType": "BOOK",
-        "categories": [
-            "Social Science"
-        ],
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "1.3.5.0.preview.3",
-        "panelizationSummary": {
-            "containsEpubBubbles": false,
-            "containsImageBubbles": false
-        },
-        "imageLinks": {
-            "smallThumbnail": "http://books.google.com/books/content?id=BMusAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-            "thumbnail": "http://books.google.com/books/content?id=BMusAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.com.br/books?id=BMusAgAAQBAJ&pg=PT97&dq=crime+intitle&hl=&cd=1&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=BMusAgAAQBAJ&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=BMusAgAAQBAJ"
-    },
-    "saleInfo": {
-        "country": "BR",
-        "saleability": "FOR_SALE",
-        "isEbook": true,
-        "listPrice": {
-            "amount": 245.35,
-            "currencyCode": "BRL"
-        },
-        "retailPrice": {
-            "amount": 245.35,
-            "currencyCode": "BRL"
-        },
-        "buyLink": "https://play.google.com/store/books/details?id=BMusAgAAQBAJ&rdid=book-BMusAgAAQBAJ&rdot=1&source=gbs_api",
-        "offers": [
-            {
-                "finskyOfferType": 1,
+            "saleInfo": {
+                "country": "BR",
+                "saleability": "FOR_SALE",
+                "isEbook": true,
                 "listPrice": {
-                    "amountInMicros": 245350000,
+                    "amount": 76.95,
                     "currencyCode": "BRL"
                 },
                 "retailPrice": {
-                    "amountInMicros": 245350000,
+                    "amount": 76.95,
                     "currencyCode": "BRL"
                 },
-                "giftable": true
+                "buyLink": "https://play.google.com/store/books/details?id=U5NhxE67JjMC&rdid=book-U5NhxE67JjMC&rdot=1&source=gbs_api",
+                "offers": [
+                    {
+                        "finskyOfferType": 1,
+                        "listPrice": {
+                            "amountInMicros": 76950000,
+                            "currencyCode": "BRL"
+                        },
+                        "retailPrice": {
+                            "amountInMicros": 76950000,
+                            "currencyCode": "BRL"
+                        },
+                        "giftable": true
+                    }
+                ]
+            },
+            "accessInfo": {
+                "country": "BR",
+                "viewability": "PARTIAL",
+                "embeddable": true,
+                "publicDomain": false,
+                "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+                "epub": {
+                    "isAvailable": true,
+                    "acsTokenLink": "http://books.google.com.br/books/download/Crime_and_Punishment-sample-epub.acsm?id=U5NhxE67JjMC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+                },
+                "pdf": {
+                    "isAvailable": false
+                },
+                "webReaderLink": "http://play.google.com/books/reader?id=U5NhxE67JjMC&hl=&printsec=frontcover&source=gbs_api",
+                "accessViewStatus": "SAMPLE",
+                "quoteSharingAllowed": false
+            },
+            "searchInfo": {
+                "textSnippet": "Nominated as one of America’s best-loved novels by PBS’s The Great American Read With the same suppleness, energy, and range of voices that won their translation of The Brothers Karamazov the PEN/Book-of-the-Month Club Prize, Pevear and ..."
             }
-        ]
-    },
-    "accessInfo": {
-        "country": "BR",
-        "viewability": "PARTIAL",
-        "embeddable": true,
-        "publicDomain": false,
-        "textToSpeechPermission": "ALLOWED",
-        "epub": {
-            "isAvailable": true,
-            "acsTokenLink": "http://books.google.com.br/books/download/Human_Security_Transnational_Crime_and_H-sample-epub.acsm?id=BMusAgAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "pdf": {
-            "isAvailable": true,
-            "acsTokenLink": "http://books.google.com.br/books/download/Human_Security_Transnational_Crime_and_H-sample-pdf.acsm?id=BMusAgAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        "webReaderLink": "http://play.google.com/books/reader?id=BMusAgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
-        "accessViewStatus": "SAMPLE",
-        "quoteSharingAllowed": false
-    },
-    "searchInfo": {
-        "textSnippet": "The judicial and police approach against organized \u003cb\u003ecrime\u003c/b\u003e in the European Union \u003cbr\u003e\nJoaquín González Ibáñez, ... Thislegislation, defined \u003cb\u003einTitle\u003c/b\u003e VI as “Provisions on \u003cbr\u003e\nPolice andJudicial Cooperation in \u003cb\u003eCriminal\u003c/b\u003e Matters” was designed to regulate&nbsp;..."
-    }
+        }
+    ]
 }

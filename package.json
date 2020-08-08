@@ -8,7 +8,7 @@
     "start": "node dist/server.js",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "test:unit": "jest",
-    "test:functional": "jest --projects ./test --runInBand"
+    "test:functional": "jest --projects ./test --forceExit --runInBand"
   },
   "author": "Gustavo Maciel",
   "license": "ISC",
