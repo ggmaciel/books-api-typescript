@@ -7,7 +7,7 @@ export interface GoogleBooksApiResponse {
     id: string,
     etag: string,
     selfLink: string,
-    volumeInfo: Object,
+    volumeInfo: { title: string, authors: string[], publishedDate: string, description: string, pageCount: number, imageLinks: { smallThumbnail: string, thumbnail: string } },
     saleInfo: Object,
     accessInfo: Object,
     searchInfo: Object
@@ -36,9 +36,10 @@ const googleApiResourceConfig: IConfig = config.get('App.resources.GoogleBooks')
 export class GoogleBooks {
     constructor(protected request = new HTTUtil.Request()) { }
 
-    public async fetchBooks(query: string): Promise<Books[]> {
+    public async fetchBooks(query: string): Promise<Books> {
         try {
-            const response = await this.request.get<Books[]>(`${googleApiResourceConfig.get('apiUrl')}/volumes?q=${query}`)
+            const response = await this.request.get<Books>(`${googleApiResourceConfig.get('apiUrl')}/volumes?q=${query}`)
+
             return response.data
         } catch (err) {
             if (HTTUtil.Request.isRequestError(err)) {
