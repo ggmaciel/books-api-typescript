@@ -1,12 +1,13 @@
 import { GoogleBooks } from '@src/clients/googleBooks'
 import googlebooks from '@test/fixtures/googlebooks.json'
-import { BookSmart } from '../booksmart'
+import { BookSmart, BookSmartProcessingInternalError } from '../booksmart'
 
 jest.mock('@src/clients/googleBooks')
 
 describe('Booksmart service', () => {
+    const mockedGoogleBooksService = new GoogleBooks() as jest.Mocked<GoogleBooks>
     it('Should return the Booksmart for one added book', async () => {
-        GoogleBooks.prototype.fetchBooks = jest.fn().mockResolvedValue(googlebooks)
+        mockedGoogleBooksService.fetchBooks.mockResolvedValue(googlebooks)
 
         const id = 'U5NhxE67JjMC'
 
@@ -28,8 +29,18 @@ describe('Booksmart service', () => {
             reviews: [{ name: 'Gustavo', reviewBody: 'Nice book' }]
         }]
 
-        const newBook = new BookSmart(new GoogleBooks())
+        const newBook = new BookSmart(mockedGoogleBooksService)
         const bookSmart = await newBook.processBook(id)
         expect(bookSmart).toEqual(expectedResponse)
+    })
+
+    it('Should throw internal processing error when something goes wrong during the rating process', async () => {
+        const id = 'U5NhxE67JjMC'
+
+        mockedGoogleBooksService.fetchBooks.mockRejectedValue('Error fetching data')
+
+        const bookSmart = new BookSmart(mockedGoogleBooksService)
+
+        await expect(bookSmart.processBook(id)).rejects.toThrow(BookSmartProcessingInternalError)
     })
 })
