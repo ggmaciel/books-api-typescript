@@ -1,6 +1,6 @@
-describe('Books functional tests', () => {
-    it('Should return a book with just a few times', async () => {
-        const { body, status } = await global.testRequest.get('/books')
+describe('Google Books functional tests', () => {
+    it('Should return a book from google books', async () => {
+        const { body, status } = await global.testRequest.get('/googlebooks')
 
         expect(status).toBe(200)
         expect(body).toEqual({
