@@ -3,7 +3,7 @@ import { InternalError } from '@src/util/errors/internal-errors'
 
 export class BookSmartProcessingInternalError extends InternalError {
     constructor(message: string) {
-        super(`Ùnexpected error during the book processing: ${message}`)
+        super(`Unexpected error during the book processing: ${message}`)
     }
 }
 
@@ -20,7 +20,7 @@ export class BookSmart {
                 authors: e.volumeInfo.authors,
                 description: e.volumeInfo.description,
                 pageCount: e.volumeInfo.pageCount,
-                imageLinks: e.volumeInfo.imageLinks,
+                imageLink: e.volumeInfo.imageLinks.thumbnail,
                 pageViews: 0,
                 publishedDate: e.volumeInfo.publishedDate,
                 numberOfReads: 0,
