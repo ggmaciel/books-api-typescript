@@ -1,13 +1,12 @@
 import app from '../src/app'
 import supertest from 'supertest'
-import { createConnection } from 'typeorm'
+import connection from '@src/database/connection'
 
-beforeAll(() => {
+beforeAll(async () => {
     global.testRequest = supertest(app)
+    await connection.create()
 })
 
 afterAll(async () => {
-    await createConnection().then(async connection => {
-        await connection.close()
-    })
+    await connection.close()
 })
