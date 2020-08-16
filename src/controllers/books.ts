@@ -1,18 +1,30 @@
 import { Router, Request, Response } from 'express'
-import { Book } from '../models/Book'
-import { getRepository } from 'typeorm'
+import { BookSmart } from '../services/booksmart'
 
 const booksRouter = Router()
+const booksmart = new BookSmart()
 
 booksRouter.post('/', async (req: Request, res: Response) => {
     try {
-        const book: Book = req.body
-        const repository = getRepository(Book)
+        const id: string = req.body.id
 
-        const result = await repository.save(book)
+        const result = await booksmart.processBook(id)
+
         res.status(201).send(result)
     } catch (err) {
         res.status(500).send({ error: 'Book validation error: Field missing' })
+    }
+})
+
+booksRouter.get('/', async (req: Request, res: Response) => {
+    try {
+        const id = req.body.id
+
+        const result = await booksmart.getProcessedBook(id)
+
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(404).send({ error: err.message })
     }
 })
 

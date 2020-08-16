@@ -1,5 +1,7 @@
 import { GoogleBooks } from '@src/clients/googleBooks'
 import { InternalError } from '@src/util/errors/internal-errors'
+import { getCustomRepository } from 'typeorm'
+import { BookRepository } from '@src/repositories/BookRepository'
 
 export class BookSmartProcessingInternalError extends InternalError {
     constructor(message: string) {
@@ -26,10 +28,26 @@ export class BookSmart {
                 numberOfReads: 0,
                 averageRating: 1,
                 likes: 0,
-                reviews: [{ name: 'Gustavo', reviewBody: 'Nice book' }]
+                reviews: [{}]
             }))
 
-            return enrichedBookData
+            const repository = getCustomRepository(BookRepository)
+
+            const result = await repository.saveBook(enrichedBookData)
+
+            return result
+        } catch (err) {
+            throw new BookSmartProcessingInternalError(err.message)
+        }
+    }
+
+    public async getProcessedBook(id: string): Promise<{}> {
+        try {
+            const repository = getCustomRepository(BookRepository)
+
+            const book = await repository.findById(id)
+
+            return book
         } catch (err) {
             throw new BookSmartProcessingInternalError(err.message)
         }

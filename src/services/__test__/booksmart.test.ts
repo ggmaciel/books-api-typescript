@@ -23,7 +23,7 @@ describe('Booksmart service', () => {
             numberOfReads: 0,
             averageRating: 1,
             likes: 0,
-            reviews: [{ name: 'Gustavo', reviewBody: 'Nice book' }]
+            reviews: [{}]
         }]
 
         const newBook = new BookSmart(mockedGoogleBooksService)
