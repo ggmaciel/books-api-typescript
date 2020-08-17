@@ -1,5 +1,5 @@
-import { GoogleBooks } from '@src/clients/googleBooks'
-import googlebooks from '@test/fixtures/googlebooks.json'
+import { GoogleBooks } from '../../clients/googleBooks'
+import googlebooks from '../../../test/fixtures/googlebooks.json'
 import { BookSmart, BookSmartProcessingInternalError } from '../booksmart'
 
 jest.mock('@src/clients/googleBooks')
@@ -23,7 +23,7 @@ describe('Booksmart service', () => {
             numberOfReads: 0,
             averageRating: 1,
             likes: 0,
-            reviews: [{}]
+            reviews: []
         }]
 
         const newBook = new BookSmart(mockedGoogleBooksService)

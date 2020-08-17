@@ -1,7 +1,7 @@
-import { GoogleBooks } from '@src/clients/googleBooks'
-import { InternalError } from '@src/util/errors/internal-errors'
+import { GoogleBooks } from '../clients/googleBooks'
+import { InternalError } from '../util/errors/internal-errors'
 import { getCustomRepository } from 'typeorm'
-import { BookRepository } from '@src/repositories/BookRepository'
+import { BookRepository } from '../repositories/BookRepository'
 
 export class BookSmartProcessingInternalError extends InternalError {
     constructor(message: string) {
@@ -18,22 +18,22 @@ export class BookSmart {
 
             const enrichedBookData = googleBook.items.map((e) => ({
                 id: e.id,
-                title: e.volumeInfo.title,
-                authors: e.volumeInfo.authors,
-                description: e.volumeInfo.description,
-                pageCount: e.volumeInfo.pageCount,
-                imageLink: e.volumeInfo.imageLinks.thumbnail,
+                title: e.volumeInfo.title || '',
+                authors: e.volumeInfo.authors || [],
+                description: e.volumeInfo.description || '',
+                pageCount: e.volumeInfo.pageCount || 0,
+                imageLink: e.volumeInfo.imageLinks.thumbnail || '',
                 pageViews: 0,
-                publishedDate: e.volumeInfo.publishedDate,
+                publishedDate: e.volumeInfo.publishedDate || '',
                 numberOfReads: 0,
                 averageRating: 1,
                 likes: 0,
-                reviews: [{}]
+                reviews: []
             }))
 
             const repository = getCustomRepository(BookRepository)
 
-            const result = await repository.saveBook(enrichedBookData)
+            const result = await repository.saveBook(enrichedBookData, id)
 
             return result
         } catch (err) {

@@ -1,5 +1,5 @@
-import googleBooksResponseFixture from '@test/fixtures/googlebooks.json'
-import * as HTTPUtil from '@src/util/request'
+import googleBooksResponseFixture from '../../../test/fixtures/googlebooks.json'
+import * as HTTPUtil from '../../util/request'
 import { GoogleBooks } from '../googleBooks'
 
 jest.mock('@src/util/request')

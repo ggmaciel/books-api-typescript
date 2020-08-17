@@ -1,5 +1,5 @@
-import * as HTTUtil from '@src/util/request'
-import { InternalError } from '@src/util/errors/internal-errors'
+import * as HTTUtil from '../util/request'
+import { InternalError } from '../util/errors/internal-errors'
 import config, { IConfig } from 'config'
 
 export interface GoogleBooksApiResponse {
@@ -7,7 +7,7 @@ export interface GoogleBooksApiResponse {
     id: string,
     etag: string,
     selfLink: string,
-    volumeInfo: { title: string, authors: string[], publishedDate: string, description: string, pageCount: number, imageLinks: { smallThumbnail: string, thumbnail: string } },
+    volumeInfo: { title: string, authors: string[], publishedDate: string, description: string, pageCount: number, imageLinks: { smallThumbnail?: string, thumbnail: string } },
     saleInfo: Object,
     accessInfo: Object,
     searchInfo: Object

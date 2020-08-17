@@ -1,6 +1,6 @@
 import app from '../src/app'
 import supertest from 'supertest'
-import connection from '@src/database/connection'
+import connection from '../src/database/connection'
 
 beforeAll(async () => {
     global.testRequest = supertest(app)
