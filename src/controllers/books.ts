@@ -12,7 +12,6 @@ booksRouter.post('/', async (req: Request, res: Response) => {
 
         res.status(201).send(result)
     } catch (err) {
-        console.log(err)
         res.status(500).send({ error: 'Book validation error: Field missing' })
     }
 })
