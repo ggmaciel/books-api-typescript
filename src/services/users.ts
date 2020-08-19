@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm'
 import { UsersRepository } from '../repositories/UsersRepository'
 import { v4 as uuidv4 } from 'uuid'
 import { InternalError } from '../util/errors/internal-errors'
+import AuthService from './auth'
 
 export interface NewUser {
     id: string,
@@ -28,7 +29,7 @@ export class Users {
                 id: uuidv4(),
                 name: name,
                 email: email,
-                password: password,
+                password: await AuthService.hashPassword(password),
                 booksRead: [],
                 readList: [],
                 favourites: []
