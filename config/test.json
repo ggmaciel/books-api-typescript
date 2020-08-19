@@ -1,9 +1,0 @@
-{
-    "App": {
-        "resources": {
-            "GoogleBooks": {
-                "apiToken": "test-token"
-            }
-        }
-    }
-}

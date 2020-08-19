@@ -42,4 +42,22 @@ export class Users {
             throw new UserProcessingInternalError('User already exists')
         }
     }
+
+    public async getUser(email: string, password: string): Promise<any> {
+        try {
+            const repository = getCustomRepository(UsersRepository)
+            const user: NewUser = await repository.findUser(email)
+            if (!(await AuthService.comparePassword(password, user.password))) {
+                throw new UserProcessingInternalError('Wrong password')
+            } else {
+                const token = AuthService.generateToken(user)
+                return token
+            }
+        } catch (err) {
+            if (err.message !== 'Unexpected error during the user processing: Wrong password') {
+                throw new UserProcessingInternalError('User not found')
+            }
+            throw new UserProcessingInternalError('Wrong password')
+        }
+    }
 }

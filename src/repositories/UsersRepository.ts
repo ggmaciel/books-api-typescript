@@ -11,4 +11,9 @@ export class UsersRepository extends Repository<any> {
         await this.save(user)
         return user
     }
+
+    public async findUser(email: string): Promise<any> {
+        const user = await this.findOne({ where: { email: email } })
+        return user
+    }
 }

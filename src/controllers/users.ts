@@ -20,4 +20,19 @@ usersRouter.post('/', async (req: Request, res: Response): Promise<void> => {
     }
 })
 
+usersRouter.post('/authenticate', async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email, password } = req.body
+
+        if (!email || !password) {
+            res.status(422).send({ code: 422, error: 'All fields are required' })
+        } else {
+            const authenticatedUser = await users.getUser(email, password)
+            res.status(200).send({ token: authenticatedUser })
+        }
+    } catch (err) {
+        res.status(400).send({ code: 400, error: err.message })
+    }
+})
+
 export default usersRouter
