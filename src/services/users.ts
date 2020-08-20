@@ -4,14 +4,20 @@ import { v4 as uuidv4 } from 'uuid'
 import { InternalError } from '../util/errors/internal-errors'
 import AuthService from './auth'
 
-export interface NewUser {
+export interface BookSmartUser {
     id: string,
     name: string,
     email: string,
     password: string,
-    booksRead: Array<Object>,
-    readList: Array<Object>,
-    favourites: Array<Object>
+    booksRead: ArraysBookSmart[]
+    readList: ArraysBookSmart[]
+    favourites: ArraysBookSmart[]
+}
+
+export interface ArraysBookSmart {
+    id: string
+    title: string
+    image: string
 }
 
 export class UserProcessingInternalError extends InternalError {
@@ -25,7 +31,7 @@ export class Users {
         try {
             const repository = getCustomRepository(UsersRepository)
 
-            const newUser: NewUser = {
+            const newUser: BookSmartUser = {
                 id: uuidv4(),
                 name: name,
                 email: email,
@@ -46,18 +52,50 @@ export class Users {
     public async getUser(email: string, password: string): Promise<any> {
         try {
             const repository = getCustomRepository(UsersRepository)
-            const user: NewUser = await repository.findUser(email)
+            const user: BookSmartUser = await repository.findUser(email)
             if (!(await AuthService.comparePassword(password, user.password))) {
                 throw new UserProcessingInternalError('Wrong password')
             } else {
                 const token = AuthService.generateToken(user)
-                return token
+                const authUser = {
+                    token,
+                    user
+                }
+                return authUser
             }
         } catch (err) {
             if (err.message !== 'Unexpected error during the user processing: Wrong password') {
                 throw new UserProcessingInternalError('User not found')
             }
             throw new UserProcessingInternalError('Wrong password')
+        }
+    }
+
+    public async addBookToReadList(bookId: string, bookTitle: string, bookImage: string, email: string): Promise<any> {
+        try {
+            const userRepository = getCustomRepository(UsersRepository)
+
+            const user = await userRepository.findUser(email)
+
+            const listItem = {
+                id: bookId,
+                image: bookImage,
+                title: bookTitle
+            }
+
+            const filterBooksRead = user.booksRead.filter(() => bookId)
+
+            if (filterBooksRead.length > 0) {
+                throw new Error()
+            }
+
+            user.booksRead.push(listItem)
+            await userRepository.updateUser(user)
+
+            // const filter = user.booksRead.some(value => value.id.includes(bookId))
+            return listItem
+        } catch (err) {
+            throw new Error('Book already readed')
         }
     }
 }

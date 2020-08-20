@@ -1,5 +1,6 @@
 import { Users } from '../models/Users'
 import { EntityRepository, Repository } from 'typeorm'
+import { BookSmartUser } from '../services/users'
 
 @EntityRepository(Users)
 export class UsersRepository extends Repository<any> {
@@ -12,8 +13,12 @@ export class UsersRepository extends Repository<any> {
         return user
     }
 
-    public async findUser(email: string): Promise<any> {
-        const user = await this.findOne({ where: { email: email } })
+    public async findUser(email: string): Promise<BookSmartUser> {
+        const user: BookSmartUser = await this.findOne({ where: { email: email } })
         return user
+    }
+
+    public async updateUser(user: object): Promise<any> {
+        await this.save(user)
     }
 }

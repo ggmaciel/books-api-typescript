@@ -1,6 +1,15 @@
 import AuthService from '../../src/services/auth'
 
 describe('Users functional tests', () => {
+    const defaultUser = {
+        name: 'John Doe',
+        email: 'john@email.com',
+        password: '1234',
+        booksRead: [],
+        readList: [],
+        favourites: []
+    }
+    const token = AuthService.generateToken(defaultUser)
     describe('When creating a new user', () => {
         it('Should successfully create a new user with encrypted password', async () => {
             const newUser = {
@@ -53,13 +62,19 @@ describe('Users functional tests', () => {
     describe('When authenticating a user', () => {
         it('Should generate a token for a valid user', async () => {
             const newUser = {
+                id: '2331a',
+                name: 'John Doe',
                 email: 'john@email.com',
-                password: '1234'
+                password: '1234',
+                booksRead: [],
+                readList: [],
+                favourites: []
             }
 
             const response = await global.testRequest.post('/users/authenticate').send({ email: newUser.email, password: newUser.password })
 
             expect(response.body).toEqual(expect.objectContaining({ token: expect.any(String) }))
+            expect(response.body.user).toEqual(expect.objectContaining({ ...newUser, ...{ id: expect.any(String), password: expect.any(String) } }))
         })
 
         it('Should return an error if there is an auth validation error', async () => {
@@ -98,6 +113,34 @@ describe('Users functional tests', () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual({ code: 400, error: 'Unexpected error during the user processing: Wrong password' })
+        })
+
+        it('Should add one book to the books read', async () => {
+            const book = {
+                id: 'w0ZFAAAAYAAJ',
+                title: 'Diario das cortes geraes e extraordinarias da nacão portugueza: August 1, 1822-September 30, 1822',
+                image: 'http://books.google.com/books/content?id=w0ZFAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+            }
+
+            await global.testRequest.post('/books').send({ id: book.id })
+            const response = await global.testRequest.put('/users/authenticate/read').set({ 'x-access-token': token }).send({ id: book.id, title: book.title, image: book.image })
+
+            expect(response.status).toBe(200)
+            expect(response.body).toEqual(expect.objectContaining({ booksRead: book }))
+        })
+
+        it('Should return error if book already on books read list', async () => {
+            const book = {
+                id: 'w0ZFAAAAYAAJ',
+                title: 'Diario das cortes geraes e extraordinarias da nacão portugueza: August 1, 1822-September 30, 1822',
+                image: 'http://books.google.com/books/content?id=w0ZFAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+            }
+
+            await global.testRequest.post('/books').send({ id: book.id })
+            const response = await global.testRequest.put('/users/authenticate/read').set({ 'x-access-token': token }).send({ id: book.id, title: book.title, image: book.image })
+
+            expect(response.status).toBe(400)
+            expect(response.body).toEqual({ code: 400, error: 'Book already readed' })
         })
     })
 })
