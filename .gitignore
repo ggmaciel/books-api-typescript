@@ -57,4 +57,4 @@ typings/
 # typescript compiled code
 dist/
 
-ormconfig.js
+#ormconfig.js
