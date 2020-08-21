@@ -14,22 +14,6 @@ jobs:
         node-version: [12.x]
         postgresql version: [12.4]
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: booksmart        
-          POSTGRES_PASSWORD: docker
-          POSTGRES_USER: postgres
-        ports:
-          - 5432:5432
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps: 
     - uses: actions/checkout@v2
     - run: git fetch --prune --unshallow 
@@ -39,11 +23,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         
+    - name: Start DB
+      uses: huaxk/postgis-action@v1
+      with: 
+        postgresql version: '12.4'
+        postgresql password: docker
+        postgresql user: postgres
+        postgresql db: booksmart
+
     - name: Install dependencies
       run: npm ci
-
-    - name: Build my_image docker image
-      uses: whoan/docker-build-with-cache-action@v5
 
     - name: Run all tests
       run: npm run test
