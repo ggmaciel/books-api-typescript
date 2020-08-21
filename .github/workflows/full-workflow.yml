@@ -12,7 +12,6 @@ jobs:
     strategy: 
       matrix:
         node-version: [12.x]
-        postgresql version: [12.4]
 
     steps: 
     - uses: actions/checkout@v2
@@ -24,9 +23,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         
     - name: Start DB
-      uses: huaxk/postgis-action@v1
+      uses: harmon758/postgresql-action@v1
       with: 
-        postgresql version: '11'
+        postgresql version: '12.4'
         postgresql password: docker
         postgresql user: postgres
         postgresql db: booksmart
