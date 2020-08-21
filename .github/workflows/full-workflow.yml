@@ -12,7 +12,7 @@ jobs:
     strategy: 
       matrix:
         node-version: [12.x]
-        mysql: [5.7]
+        postgresql version: [12.4]
 
     steps: 
     - uses: actions/checkout@v2
@@ -24,9 +24,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         
     - name: Start DB
-      uses: mirromutth/mysql-action@v1.1
+      uses: harmon758/postgresql-action@v1
       with: 
-        mysql version: ${{ matrix.mysql }}
+        postgresql version: '12.4'
 
     - name: Install dependencies
       run: npm ci
