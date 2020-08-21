@@ -1,0 +1,17 @@
+{
+    "App": {
+        "port": "APP_PORT",
+        "database": {
+            "sqlUrl": "SQL_URL"
+        },
+        "resources": {
+            "GoogleBooks": {
+                "apiUrl": "GOOGLEBOOKS_API_URL",
+                "apiToken": "GOOGLEBOOKS_API_TOKEN"
+            }
+        },
+        "auth": {
+            "key": "JWT_SECRET_KEY"
+        }
+    }
+}
