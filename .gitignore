@@ -60,3 +60,4 @@ dist/
 #ormconfig.js
 .github/
 scripts/
+.Procfile
