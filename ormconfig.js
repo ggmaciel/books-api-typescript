@@ -1,8 +1,8 @@
 /* eslint-disable indent */
-
+console.log('Env var', process.env.DATABASE_URL)
 module.exports = {
    type: 'postgres',
-   url: 'postgres://postgres:docker@localhost:5432/booksmart',
+   url: process.env.DATABASE_URL,
    synchronize: true,
    logging: false,
    entities: [
