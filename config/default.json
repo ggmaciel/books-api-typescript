@@ -9,6 +9,10 @@
                 "apiUrl": "https://www.googleapis.com/books/v1",
                 "apiToken": "do-not-hard-code"
             }
+        },
+        "logger": {
+            "enabled": true,
+            "level": "info"
         }
     }
 }

@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { BookSmart } from '../services/booksmart'
+import logger from '../logger'
 
 const booksRouter = Router()
 const booksmart = new BookSmart()
@@ -12,6 +13,7 @@ booksRouter.post('/', async (req: Request, res: Response) => {
 
         res.status(201).send(result)
     } catch (err) {
+        logger.error(err)
         res.status(500).send({ error: err.message })
     }
 })
