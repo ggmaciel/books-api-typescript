@@ -2,6 +2,7 @@ import { GoogleBooks } from '../clients/googleBooks'
 import { InternalError } from '../util/errors/internal-errors'
 import { getCustomRepository } from 'typeorm'
 import { BookRepository } from '../repositories/BookRepository'
+import logger from '../logger'
 
 export class BookSmartProcessingInternalError extends InternalError {
     constructor(message: string) {
@@ -13,6 +14,7 @@ export class BookSmart {
     constructor(protected googleBooks = new GoogleBooks()) { }
 
     public async processBook(id: string): Promise<{}> {
+        logger.info('Preparing the book processing')
         try {
             const googleBook = await this.googleBooks.fetchBooks(id)
 
@@ -37,6 +39,7 @@ export class BookSmart {
 
             return result
         } catch (err) {
+            logger.error(err)
             throw new BookSmartProcessingInternalError(err.message)
         }
     }

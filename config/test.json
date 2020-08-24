@@ -4,6 +4,9 @@
             "GoogleBooks": {
                 "apiToken": "test-token"
             }
+        },
+        "logger": {
+            "enabled": false
         }
     }
 }
