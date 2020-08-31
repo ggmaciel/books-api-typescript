@@ -143,4 +143,53 @@ describe('Users functional tests', () => {
             expect(response.body).toEqual({ code: 400, error: 'Book already readed' })
         })
     })
+    describe('When getting user profile info', () => {
+        it('Should return the token owner profile information', async () => {
+            const newUser = {
+                id: '2331a',
+                name: 'John Doe',
+                email: 'john@email.com',
+                password: '1234',
+                booksRead: [{
+                    id: 'w0ZFAAAAYAAJ',
+                    title: 'Diario das cortes geraes e extraordinarias da nacão portugueza: August 1, 1822-September 30, 1822',
+                    image: 'http://books.google.com/books/content?id=w0ZFAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+                }],
+                readList: [],
+                favourites: []
+            }
+
+            const token = AuthService.generateToken(newUser)
+            const { body, status } = await global.testRequest.get('/users/me').set({ 'x-access-token': token })
+
+            expect(status).toBe(200)
+            expect(token).toEqual(expect.any(String))
+            expect(body.user).toEqual(expect.objectContaining({ ...newUser, ...{ id: expect.any(String), password: expect.any(String), booksRead: expect.any(Array) } }))
+        })
+
+        it('Sould return Not Found, when the user is not found', async () => {
+            const newUser = {
+                id: '2331321321321a',
+                name: 'John Doe',
+                email: 'john+1@email.com',
+                password: '1234',
+                booksRead: [],
+                readList: [],
+                favourites: []
+            }
+
+            const token = AuthService.generateToken(newUser)
+
+            const { body, status } = await global.testRequest.get('/users/me').set({ 'x-access-token': token })
+
+            expect(status).toBe(404)
+            expect(body.error).toBe('Unexpected error during the user processing: User not found')
+        })
+
+        it('Sould return Not Found, when the user is not sent to endpoint', async () => {
+            const { body, status } = await global.testRequest.get('/users/me').set({ 'x-access-token': 'a' })
+            expect(status).toBe(401)
+            expect(body.error).toBe('jwt malformed')
+        })
+    })
 })

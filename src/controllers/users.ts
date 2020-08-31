@@ -53,4 +53,17 @@ usersRouter.put('/authenticate/read', authMiddleware, async (req: Request, res: 
     }
 })
 
+usersRouter.get('/me', authMiddleware, async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const email = req.decoded ? req.decoded.payload.email : ''
+        const password = req.decoded ? req.decoded.payload.password : ''
+
+        const user = await users.getUser(email, password)
+
+        return res.send(user)
+    } catch (err) {
+        return res.status(404).send({ error: err.message })
+    }
+})
+
 export default usersRouter

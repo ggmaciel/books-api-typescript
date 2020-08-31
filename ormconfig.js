@@ -5,12 +5,12 @@ module.exports = {
    synchronize: true,
    logging: false,
    entities: [
-      // 'src/models/**/*.ts'
-      'dist/src/models/**/*.js'
+      'src/models/**/*.ts'
+      // 'dist/src/models/**/*.js'
    ],
    migrations: [
-      // 'src/migration/**/*.ts'
-      'dist/src/migration/**/*.js'
+      'src/migration/**/*.ts'
+      // 'dist/src/migration/**/*.js'
    ],
    subscribers: [
       'src/subscriber/**/*.ts'
